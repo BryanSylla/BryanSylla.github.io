@@ -10,29 +10,22 @@
 <p id="wins"></p>
 <p id="tries"></p>
 <div id="guesses"><p>Letters the user has guessed:</p></div>
-<div id="child-div"></div>
 
 
     <script type="text/javascript">
 var targetDiv = document.getElementById("guesses");
-    
-      var random = Math.floor(Math.random() * 3);
+     var words=["madonna","jordan","tony"];
+      var random = Math.floor(Math.random() * words.length);
     
 
     var wins=0;var tries=15;  var losses=0;
     //array of random words
-    var words=["madonna","jordan","tony"];
-    //nest of if-else statements that randomly select 1 of the words
-    if (random==0){
-      var randomWord=words[0];
-    }
-
-    else if (random ==1){
-      randomWord=words[1];
-    }
-
-    else {
-      randomWord=words[2];
+   
+    //for loop that selects random word out of array of words
+    for(k=0;k<words.length;k++){
+    	if(random==k){
+    		var randomWord=words[k];
+    	}
     }
     
 var line=["_"];
@@ -41,9 +34,6 @@ var line=["_"];
  line[i]= ' _';
 
     };
-    
-    console.log(line);
-console.log(randomWord);
 
       
 document.onkeyup = function(event) {
@@ -51,7 +41,7 @@ document.onkeyup = function(event) {
       // Determines which key was pressed.
       var input = event.key;
       var input = input.toLowerCase();
-
+      //creates the list of letters the user has guessed
       var newDiv = document.createElement("div");
       newDiv.innerHTML = input;
 
@@ -61,7 +51,7 @@ document.onkeyup = function(event) {
     //stores line into previousline variable to later compare for failed tries
       var previousline=line.join("");
       
-
+//array that goes through each word everytime a key is pressed
   for (i=0;i<randomWord.length;i++){
    
     
@@ -82,7 +72,7 @@ var string = line.join("");
 
 
 }
-
+//creates the underscores on page
 document.getElementById("hangman").innerHTML = string;
 //checks if you have won
     if(string==randomWord){
@@ -92,11 +82,12 @@ document.getElementById("hangman").innerHTML = string;
       alert("Please reload page to restart game, we are currently working on automating this process. Thank you.")
 }
 
+//updates the amount of tries left
 if(previousline==string){
   tries--;
   
 }
-document.getElementById("tries").innerHTML = "tries: " + tries;
+document.getElementById("tries").innerHTML = "tries left: " + tries;
 
 while(tries==0){
 alert("GAME OVER:PLEASE CLOSE AND REOPEN PAGE!");
