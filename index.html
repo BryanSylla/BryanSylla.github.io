@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Favorite TV Shows</title>
+    <h1> HANGMAN LET'S GO! </h1>
+  </head>
+  <body>
+  <h2 id='hangman'></h2>
+<p id="wins"></p>
+<p id="tries"></p>
+<p id="guesses"></p>
+
+    <script type="text/javascript">
+
+    
+      var random = Math.floor(Math.random() * 3);
+    
+
+    var wins=0;var tries=15;  var losses=0;
+    //array of random words
+    var words=["madonna","jordan","tony"];
+    //nest of if-else statements that randomly select 1 of the words
+    if (random==0){
+      var randomWord=words[0];
+    }
+
+    else if (random ==1){
+      randomWord=words[1];
+    }
+
+    else {
+      randomWord=words[2];
+    }
+    
+var line=["_"];
+    //creates the underscore lines that grow or shrink depend on wordsize
+      for(i=1;i<randomWord.length;i++){
+ line[i]= ' _';
+
+
+
+
+
+
+
+    };
+    
+    console.log(line);
+console.log(randomWord);
+
+    //loop which runs the amount of tries per word
+   // while(guesses>0){
+      //waits for player input
+      
+document.onkeyup = function(event) {
+       
+      // Determines which key was pressed.
+      var input = event.key;
+      var input = input.toLowerCase();
+
+console.log(input);
+    
+
+   
+      var previousline=line.join("");
+    console.log(previousline);
+      
+
+  for (i=0;i<randomWord.length;i++){
+    //stores line into previousline variable to later compare for failed tries
+    
+    //checks to see if guess is right
+   if(input==randomWord.charAt(i)){
+    
+
+
+    //switches underscores with correct guessed letters
+    line[i]=input;
+     
+ 
+    
+}
+
+
+var string = line.join("");
+
+
+
+
+
+}
+
+document.getElementById("hangman").innerHTML = string;
+//checks if you have won
+    if(string==randomWord){
+      alert("you have won");
+      wins++;
+      document.getElementById("wins").innerHTML ="Wins: " + wins;
+}
+
+if(previousline==string){
+  tries--;
+  
+}
+document.getElementById("tries").innerHTML = "tries: " + tries;
+
+while(tries==0){
+alert("GAME OVER:PLEASE CLOSE AND REOPEN PAGE!");
+}
+
+
+  }
+
+
+   
+    </script>
+      
+
+  </body>
+</html>
