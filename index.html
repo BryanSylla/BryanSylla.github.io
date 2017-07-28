@@ -9,10 +9,12 @@
   <h2 id='hangman'></h2>
 <p id="wins"></p>
 <p id="tries"></p>
-<p id="guesses"></p>
+<div id="guesses"><p>Letters the user has guessed:</p></div>
+<div id="child-div"></div>
+
 
     <script type="text/javascript">
-
+var targetDiv = document.getElementById("guesses");
     
       var random = Math.floor(Math.random() * 3);
     
@@ -38,20 +40,11 @@ var line=["_"];
       for(i=1;i<randomWord.length;i++){
  line[i]= ' _';
 
-
-
-
-
-
-
     };
     
     console.log(line);
 console.log(randomWord);
 
-    //loop which runs the amount of tries per word
-   // while(guesses>0){
-      //waits for player input
       
 document.onkeyup = function(event) {
        
@@ -59,16 +52,18 @@ document.onkeyup = function(event) {
       var input = event.key;
       var input = input.toLowerCase();
 
-console.log(input);
-    
+      var newDiv = document.createElement("div");
+      newDiv.innerHTML = input;
 
-   
+      targetDiv.appendChild(newDiv);
+
+
+    //stores line into previousline variable to later compare for failed tries
       var previousline=line.join("");
-    console.log(previousline);
       
 
   for (i=0;i<randomWord.length;i++){
-    //stores line into previousline variable to later compare for failed tries
+   
     
     //checks to see if guess is right
    if(input==randomWord.charAt(i)){
@@ -82,11 +77,8 @@ console.log(input);
     
 }
 
-
+//turns an array of characters into a string
 var string = line.join("");
-
-
-
 
 
 }
@@ -97,6 +89,7 @@ document.getElementById("hangman").innerHTML = string;
       alert("you have won");
       wins++;
       document.getElementById("wins").innerHTML ="Wins: " + wins;
+      alert("Please reload page to restart game, we are currently working on automating this process. Thank you.")
 }
 
 if(previousline==string){
