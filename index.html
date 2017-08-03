@@ -18,7 +18,7 @@ var targetDiv = document.getElementById("guesses");
       var random = Math.floor(Math.random() * words.length);
     
 
-    var wins=0;var tries=15;  var losses=0;
+    var string='';var tries=15;  var losses=0;
     //array of random words
    
     //for loop that selects random word out of array of words
@@ -63,7 +63,6 @@ document.onkeyup = function(event) {
     //switches underscores with correct guessed letters
     line[i]=input;
      
- 
     
 }
 
@@ -78,8 +77,29 @@ document.getElementById("hangman").innerHTML = string;
     if(string==randomWord){
       alert("you have won");
       wins++;
+      var random = Math.floor(Math.random() * words.length);
+    
+
+     string='';var tries=15;  var losses=0;
+    //array of random words
+   
+    //for loop that selects random word out of array of words
+    for(k=0;k<words.length;k++){
+    	if(random==k){
+    		var randomWord=words[k];
+    	}
+    }
+    
+var line=["_"];
+    //creates the underscore lines that grow or shrink depend on wordsize
+      for(i=1;i<randomWord.length;i++){
+ line[i]= ' _';
+
+    };
       document.getElementById("wins").innerHTML ="Wins: " + wins;
-      alert("Please reload page to restart game, we are currently working on automating this process. Thank you.")
+      document.getElementById("hangman").innerHTML = string;
+	document.getElementById("tries").innerHTML = "tries left: " + tries;
+     
 }
 
 //updates the amount of tries left
@@ -89,12 +109,61 @@ if(previousline==string){
 }
 document.getElementById("tries").innerHTML = "tries left: " + tries;
 
-while(tries==0){
+if(tries==0){
 alert("GAME OVER:PLEASE CLOSE AND REOPEN PAGE!");
-}
+var random = Math.floor(Math.random() * words.length);
+    
 
+    var string='';var tries=15;  var losses=0;
+    //array of random words
+   
+    //for loop that selects random word out of array of words
+    for(k=0;k<words.length;k++){
+    	if(random==k){
+    		var randomWord=words[k];
+    	}
+    }
+    
+var line=["_"];
+    //creates the underscore lines that grow or shrink depend on wordsize
+      for(i=1;i<randomWord.length;i++){
+ line[i]= ' _';
+
+    };		
+document.getElementById("hangman").innerHTML = string;
+    
+	document.getElementById("tries").innerHTML = "tries left: " + tries;																																																						
+}
+ 
 
   }
+ 
+
+  /*function resetGame(){
+  	var random = Math.floor(Math.random() * words.length);
+    
+
+    var tries=15;  var losses=0;var string;
+    //array of random words
+   
+    //for loop that selects random word out of array of words
+    for(k=0;k<words.length;k++){
+    	if(random==k){
+    		var randomWord=words[k];
+    	}
+    }
+    
+var line=["_"];
+    //creates the underscore lines that grow or shrink depend on wordsize
+      for(i=1;i<randomWord.length;i++){
+ line[i]= ' _';
+
+    };
+    string = line.join("");
+	document.getElementById("hangman").innerHTML = string;
+    document.getElementById("wins").innerHTML ="Wins: " + wins;
+	document.getElementById("tries").innerHTML = "tries left: " + tries;
+  }*/
 
 
    
